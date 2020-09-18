@@ -1,91 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Starter Template - Materialize</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="./static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="./static/css2/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <title>Titanic Prediction</title>
+    <meta content="" name="descriptison">
+    <meta content="" name="keywords">
+
+    <link href="{{ url_for('static', filename='img/favicon.png')}}" rel="icon">
+    <link href="{{ url_for('static', filename='img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i"
+          rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet"
+          type="text/css">
+    <link href="{{ url_for('static', filename='vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet"
+          type="text/css">
+    <link href="{{ url_for('static', filename='css/style.css')}}" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
-  <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
 
-      <ul id="nav-mobile" class="sidenav">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
-      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+<header id="header">
+    <div class="container-fluid">
+
+        <div class="logo float-left">
+        </div>
+
+        <button type="button" class="nav-toggle"><i class="bx bx-menu"></i></button>
+        <nav class="nav-menu">
+            <ul>
+                <li class="active"><a href="#header">Predictor</a></li>
+                <li><a href="#about">About Us</a></li>
+            </ul>
+        </nav>
+
     </div>
-  </nav>
+</header>
 
+<!-- ======= Hero Section ======= -->
+<section id="hero">
+    <div class="hero-container">
+        <h1>Welcome to our predictor</h1>
+        <h2>Predict the probability of survival if You were on Titanic!!</h2>
 
-  <div class="section no-pad-bot" id="index-banner">
+        <form action="{{ url_for('predict') }}" method="post" role="form" class="php-email-form">
+            <div class="row mx-auto">
+                <div class="col-lg-4 col-md-12 form-group pr-md-1">
+                    <input type="text" name="Age" class="form-control" id="first_name" placeholder="Your Age"
+                           data-rule="minlen:1" data-msg="Please enter valid age in integers"/>
+                    <div class="validate"></div>
+                </div>
+                <div class="col-lg-4 col-md-12 form-group pl-md-1">
+                    <input type="text" class="form-control" name="Fare" id="last_name"
+                           placeholder="Fare (range from $0 to $500)" data-rule="minlen:1"
+                           data-msg="Please enter a valid Fare in dollars"/>
+                    <div class="validate"></div>
+                </div>
+                <div class="col-lg-4 col-md-12 form-group pl-md-1">
+                    <input type="text" class="form-control" name="Gender" id="_name"
+                           placeholder="1 for Male and 0 for any other" data-rule="minlen:1"
+                           data-msg="Please enter a valid number"/>
+                    <div class="validate"></div>
+                </div>
+            </div>
+
+            <div class="mb-1">
+                <div class="loading">Loading</div>
+                <div class="sent-message"><p><br>Result is: {{ pred }} <br></p></div>
+            </div>
+            <div class="text-center">
+                <button type="submit" value="Submit">Predict!</button>
+            </div>
+            <p class="font-italic"><br>Result is: {{ pred }} <br></p>
+        </form>
+    </div>
+</section>
+<!-- #hero -->
+
+<main id="main">
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+        <div class="container">
+
+            <div class="row">
+                <!-- <div class="col-lg-6">
+                  <img src="/img/about-img.jpg" class="img-fluid" alt="">
+                </div> -->
+                <div class="col-lg-6 pt-4 pt-lg-0">
+                    <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+                    <p class="font-italic">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore
+                        magna aliqua.
+                    </p>
+
+                    <p>
+                        Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                        in voluptate
+                        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in
+                        culpa qui officia deserunt mollit anim id est laborum
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End About Section -->
+</main>
+
+{{ pred }}
+<!-- ======= Footer ======= -->
+<footer id="footer">
     <div class="container">
-      <br><br>
-      <h1 class="header center orange-text">Titanic Prediction</h1>
-      <div class="row center">
-        <h5 class="header col s12 light">Predict the probability of survival if You were on Titanic!!
-        <br>
-        </h5>
-      </div>
-
-              <div class="row">
-    <form action='/predict' method="post" class="col s12">
-      <div class="row">
-        <div class="input-field col s4">
-            <label for="first_name"><b>Age</b></label>
-            <br>
-          <input placeholder="Agein yearss" name="Age" id="first_name" type="text" class="validate">
+        <div class="copyright">
+            &copy; Copyright <strong><span>Matrix</span></strong>. All Rights Reserved
         </div>
-        <div class="input-field col s4">
-
-          <label for="last_name"><b>Fare(Range From $0 to $500)</b></label>
-            <br>
-          <input id="last_name" name="Fare" placeholder="Fare in Dollars"  type="text" class="validate">
-
+        <div class="credits">
+            Made with &hearts; by Sanjeev &
+            Designed with &hearts; by Prasoon
         </div>
-
-        <div class="input-field col s4">
-            <label for="_name"><b>If Male(input 1, 0 for any other)</b></label>
-            <br>
-          <input id="_name" name="Male" placeholder="Male" type="text" class="validate">
-
-        </div>
-
-      </div>
-
-      <div class="row center">
-
-          <button type="submit" class="btn-large waves-effect waves-light orange">Predict Probability</button>
-      </div>
-    </form>
-      </div>
-
-      <br>
-        {{pred}}<br>
-
     </div>
-  </div>
+</footer><!-- End #footer -->
 
+<!-- Vendor JS Files -->
 
-    <br><br>
-  </div>
-  </div>>
+<script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{ url_for('static', filename='vendor/jquery.easing/jquery.easing.min.js')}}"></script>
+<script src="{{ url_for('static', filename='vendor/php-email-form/validate.js')}}"></script>
 
- 
+<!-- Template Main JS File -->
+<script src="{{ url_for('static', filename='js/main.js')}}"></script>
 
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src=".js/materialize.js"></script>
-  <script src="js/init.js"></script>
+</body>
 
-  </body>
 </html>
-
