@@ -23,7 +23,7 @@ def predict():
 
     if output > str(0.5):
         return render_template('titanic.html',
-                               pred='<p>Your life is not in Danger.\nProbability of survival is {}</p>'.format(output),
+                               pred='Your life is not in Danger.\nProbability of survival is {}'.format(output),
                                bhai="you are safe!")
     else:
         return render_template('titanic.html',

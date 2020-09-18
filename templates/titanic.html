@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -48,7 +47,7 @@
         <h1>Welcome to our predictor</h1>
         <h2>Predict the probability of survival if You were on Titanic!!</h2>
 
-        <form action="/predict" method="post" role="form" class="php-email-form">
+        <form action="{{ url_for('predict') }}" method="post" role="form" class="php-email-form">
             <div class="row mx-auto">
                 <div class="col-lg-4 col-md-12 form-group pr-md-1">
                     <input type="text" name="Age" class="form-control" id="first_name" placeholder="Your Age"
@@ -69,18 +68,18 @@
                 </div>
             </div>
 
-
             <div class="mb-1">
                 <div class="loading">Loading</div>
                 <div class="sent-message"><p><br>Result is: {{ pred }} <br></p></div>
             </div>
             <div class="text-center">
-                <button type="submit">Predict!</button>
+                <button type="submit" value="Submit">Predict!</button>
             </div>
-                <p>Result is: <br>{{pred}}<br></p>
+            <p class="font-italic"><br>Result is: {{ pred }} <br></p>
         </form>
     </div>
-</section><!-- #hero -->
+</section>
+<!-- #hero -->
 
 <main id="main">
     <!-- ======= About Section ======= -->
